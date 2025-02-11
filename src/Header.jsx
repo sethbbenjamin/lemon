@@ -5,8 +5,8 @@ function Header(){
     return(
         <header>
         
-        Header
-        <Navigation />  
+            <img src="./src/logo.svg" alt="Little Lemon logo" className="logo" />
+            <Navigation />  
         </header>
     )
 }
