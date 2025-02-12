@@ -1,11 +1,14 @@
 
-/* green: #49SE57 */
+/* green: #495E57 */
 /* yellow: #F4CE14 */
+/* pink: #ee9972 */
+/* cream: #fdbabb */
 
 #root {
   display: flex;
   flex-direction: column;
-  width: 100%;   
+  width: 100%;
+  min-height: 100vh;   
   max-width: 1200px;  
   margin: 0 auto;  
   padding: 0 20px;  
@@ -15,6 +18,7 @@ header{
   display: flex;
   justify-content: space-around;
   align-items: center;
+  padding: 10px 20px;
 }
 
 .logo{
@@ -22,15 +26,8 @@ header{
 }
 
 
-@media (max-width: 768px) {
-  .nav ul {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-}
 
-
+/* Navigation */
 
 nav {
   display: flex;
@@ -46,5 +43,124 @@ nav ul {
 
 }
 
+main{
+  flex: 1;
+}
 
 
+/* Hero ----- */
+
+
+#hero{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px;
+  height: 30vh;
+  background-color: #495E57;
+  color: white;
+}
+
+
+#hero h1{
+  color: #F4CE14;
+}
+
+#hero div {
+  width: 33%;
+}
+
+#hero img{
+  width: 200px;
+  border-radius: 16px;
+}
+
+/* Specials ----- */
+
+
+#highlights{
+  margin-top: 100px;
+  display:flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#specials-banner{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .card-container{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+
+.card {
+  background-color: #EDEFEE;
+  border-radius: 15px; 
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+}
+
+@media screen and (min-width: 768px) {
+  .card-container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    padding: 10px;
+  }
+
+.card {
+  background-color: #EDEFEE;
+  border-radius: 15px; 
+  overflow: hidden;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+}
+
+
+
+
+
+.card img {
+  width: 100%;
+  height: 200px; 
+  object-fit: cover; 
+}
+
+/* Card content */
+.card-content {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+
+
+.button {
+  text-decoration: none;
+  color:#333333;
+  padding: 20px;
+  background-color: #F4CE14;
+  border-radius: 16px;
+}
+
+/* Footer ----- */

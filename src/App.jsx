@@ -1,24 +1,21 @@
-import Header from './Header'
+
 import './App.css'
+import Header from './Header'
+import Content from './Content'
 import Footer from './Footer'
-import Hero from './Hero'
-import Highlights from './Highlights'
-import Testimonials from './Testimonials'
-import About from './About' 
+import About from './About'
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 function App() {
 
   return (
     <>
-    <Header />
-    <Hero />
-    <Highlights />
-    <Testimonials /> 
-    <About />
-    
-    <Footer />
+     
+      <Header />
+      <Content />
+      <Footer />
     </>
-  )
+  );
 }
 
 export default App

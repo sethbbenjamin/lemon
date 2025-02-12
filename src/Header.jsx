@@ -1,12 +1,12 @@
-import Navigation from "./Nav";
+import { Link } from 'react-router-dom';
+import Navbar from './Navbar';
 
 
-function Header(){
-    return(
+function Header() {
+    return (
         <header>
-        
-            <img src="./src/logo.svg" alt="Little Lemon logo" className="logo" />
-            <Navigation />  
+            <img src="/images/logo.svg" alt="Little Lemon logo" className="logo" />
+            <Navbar />  
         </header>
     )
 }
