@@ -1,0 +1,24 @@
+/* Hero ----- */
+#hero{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+    height: 30vh;
+    background-color: #495E57;
+    color: white;
+  }
+  
+  
+  #hero h1{
+    color: #F4CE14;
+  }
+  
+  #hero div {
+    width: 33%;
+  }
+  
+  #hero img{
+    width: 200px;
+    border-radius: 16px;
+  }

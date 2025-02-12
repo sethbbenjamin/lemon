@@ -1,0 +1,16 @@
+/* Navigation */
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style-type: none;
+    gap: 20px;
+  
+  }
+  
