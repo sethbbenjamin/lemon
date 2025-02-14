@@ -1,35 +1,54 @@
+import "./bookingform.css";
 
-import React from 'react'
-
-const BookingForm = () => {
+function BookingForm({ formState, dispatch, handleDateChange, availableTimes, handleSubmit }) {
   return (
-    <form id="booking-form">
+    <form onSubmit={handleSubmit} className="booking-form">
       <label htmlFor="res-date">Choose date</label>
-      <input type="date" id="res-date" />
+      <input
+        type="date"
+        id="res-date"
+        value={formState.date}
+        onChange={(e) => handleDateChange(e.target.value)}
+      />
 
       <label htmlFor="res-time">Choose time</label>
-      <select id="res-time">
-        <option>17:00</option>
-        <option>18:00</option>
-        <option>19:00</option>
-        <option>20:00</option>
-        <option>21:00</option>
-        <option>22:00</option>
+      <select
+        id="res-time"
+        value={formState.time}
+        onChange={(e) => dispatch({ type: "SET_TIME", payload: e.target.value })}
+      >
+        <option value="">Select a time</option>
+        {availableTimes.map((t) => (
+          <option key={t} value={t}>
+            {t}
+          </option>
+        ))}
       </select>
 
       <label htmlFor="guests">Number of guests</label>
-      <input type="number" placeholder="1" min="1" max="10" id="guests" />
+      <input
+        type="number"
+        id="guests"
+        min="1"
+        max="10"
+        value={formState.guests}
+        onChange={(e) => dispatch({ type: "SET_GUESTS", payload: Number(e.target.value) })}
+      />
 
       <label htmlFor="occasion">Occasion</label>
-      <select id="occasion">
+      <select
+        id="occasion"
+        value={formState.occasion}
+        onChange={(e) => dispatch({ type: "SET_OCCASION", payload: e.target.value })}
+      >
         <option>Birthday</option>
         <option>Anniversary</option>
+        <option>Party</option>
       </select>
 
       <input type="submit" value="Make Your Reservation" />
     </form>
-  )
+  );
 }
 
-export default BookingForm
-
+export default BookingForm;

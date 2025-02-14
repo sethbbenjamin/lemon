@@ -7,7 +7,7 @@ import Footer from './components/Footer'
 import { Routes, Route } from 'react-router-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import { Home, About, Menu, Reservations, Order, Login } from './pages'
+import { Home, About, Menu, Reservation, Order, Login } from './pages'
 
 
 function App() {
@@ -19,7 +19,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/menu" element={<Menu />} />
-        <Route path="/reservations" element={<Reservations />} />
+        <Route path="/reservation" element={<Reservation />} />
         <Route path="/order" element={<Order />} />
         <Route path="/login" element={<Login />} />
       </Routes>
