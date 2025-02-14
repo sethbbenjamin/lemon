@@ -2,6 +2,8 @@ import "./bookingform.css";
 
 function BookingForm({ formState, dispatch, handleDateChange, availableTimes, handleSubmit }) {
   return (
+    <>
+    <h1>Book Now</h1>
     <form onSubmit={handleSubmit} className="booking-form">
       <label htmlFor="res-date">Choose date</label>
       <input
@@ -48,6 +50,7 @@ function BookingForm({ formState, dispatch, handleDateChange, availableTimes, ha
 
       <input type="submit" value="Make Your Reservation" />
     </form>
+    </>
   );
 }
 
