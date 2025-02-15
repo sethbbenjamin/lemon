@@ -1,25 +1,31 @@
+import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import './App.css';
 
-import './App.css'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-
-import { Routes, Route } from 'react-router-dom';
-
-import { Home, About, Menu, BookingPage, Order, Login } from './pages'
+import { Home, About, Menu, BookingPage, Order, Login } from './pages';
 import ConfirmedBooking from './components/ConfirmedBooking';
 
-
 function App() {
+  // Load reservations from localStorage or default to an empty array
+  const [reservations, setReservations] = useState(() => {
+    const storedReservations = localStorage.getItem("reservations");
+    return storedReservations ? JSON.parse(storedReservations).map(res => ({
+      ...res,
+      date: new Date(res.date) // Convert back to Date object
+    })) : [];
+  });
 
-
-  const [reservations, setReservations] = useState([]); 
+  // Save reservations to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("reservations", JSON.stringify(reservations));
+  }, [reservations]);
 
   const addReservation = (newReservation) => {
-    setReservations((reservationsList) => [...reservationsList, newReservation]); 
+    setReservations((prev) => [...prev, newReservation]);
   };
-
-
 
   return (
     <>
@@ -38,4 +44,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

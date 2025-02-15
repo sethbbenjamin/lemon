@@ -1,22 +1,20 @@
 import { useLocation } from "react-router-dom";
 
-const ConfirmedBooking = () => {
+function ConfirmedBooking() {
     const location = useLocation();
-    const formData = location.state?.formData;
+    const formData = location.state?.formData || {};
 
-    if (!formData) {
-        return <p>No reservation data found.</p>;
-    }
+    // Convert back to Date object
+    const reservationDate = new Date(formData.date);
 
     return (
         <div>
             <h2>Reservation Confirmed!</h2>
-            <p><strong>Date:</strong> {formData.date}</p>
-            <p><strong>Time:</strong> {formData.time}</p>
-            <p><strong>Guests:</strong> {formData.guests}</p>
-            <p><strong>Occasion:</strong> {formData.occasion}</p>
+            <p>
+                Reservation: <strong>{reservationDate.toLocaleDateString()}</strong> at <strong>{formData.time}</strong> for <strong>{formData.guests}</strong> guests.
+            </p>
         </div>
     );
-};
+}
 
 export default ConfirmedBooking;

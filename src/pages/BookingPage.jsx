@@ -15,18 +15,13 @@ const formReducer = (state, action) => {
       return { ...state, occasion: action.payload };
     case "SET_AVAILABLE_TIMES":
       return { ...state, availableTimes: action.payload };
+    case "RESET_FORM":
+      return initializeTimes();
     default:
       return state;
   }
 };
 
-// const initializeTimes = () => ({
-//   date: "",
-//   time: "",
-//   guests: 1,
-//   occasion: "Birthday",
-//   availableTimes: ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
-// });
 
 const initializeTimes = () => {
   const today = new Date();
@@ -53,11 +48,6 @@ const initializeTimes = () => {
 };
 
 
-// const updateTimes = (date) => {
-//   return ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"]; // Same times for now
-// };
-
-
 const updateTimes = (date) => {
   if (typeof fetchAPI === "function") {
     const dateObj = new Date(date);
@@ -72,13 +62,14 @@ const updateTimes = (date) => {
 export function BookingPage({ addReservation, reservations }) {
   const [formState, dispatch] = useReducer(formReducer, initializeTimes());
   const navigate = useNavigate();
-  
+
 
   // Handler to update date and available times
   const handleDateChange = (newDate) => {
-    dispatch({ type: "SET_DATE", payload: newDate });
+    dispatch({ type: "SET_DATE", payload: new Date(newDate) });
     dispatch({ type: "SET_AVAILABLE_TIMES", payload: updateTimes(newDate) });
   };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -87,9 +78,17 @@ export function BookingPage({ addReservation, reservations }) {
       const success = submitAPI(formState);
 
       if (success) {
-        // alert(
-        //   `Reservation confirmed: ${formState.guests} guests on ${formState.date} at ${formState.time} for a ${formState.occasion}!`
-        // );
+
+
+
+        const newReservation = { 
+          ...formState, 
+          date: formState.date.toISOString() // Convert Date object to string for storage
+        };
+
+
+        addReservation(newReservation);
+        dispatch({ type: "RESET_FORM" });
 
         navigate("/confirmed", { state: { formData: formState } });
 
@@ -99,7 +98,6 @@ export function BookingPage({ addReservation, reservations }) {
       }
     } else {
       console.error("submitAPI function is not available.");
-      alert("Error: API is not loaded.");
     }
   };
 
@@ -113,6 +111,26 @@ export function BookingPage({ addReservation, reservations }) {
         availableTimes={formState.availableTimes}
         handleSubmit={handleSubmit}
       />
+
+
+
+
+      <h2>Reservations</h2>
+      {reservations.length === 0 ? (
+        <p>No reservations yet.</p>
+      ) : (
+        <ul>
+          {reservations.map((res, index) => (
+            <li key={index}>
+              {new Date(res.date).toLocaleDateString()} at {res.time}, {res.guests} guests - {res.occasion}
+            </li>
+          ))}
+        </ul>
+      )}
+
+
+
+
     </div>
   );
 }
