@@ -31,7 +31,7 @@ const initializeTimes = () => {
     return {
       date: today,
       time: "",
-      guests: 1,
+      guests: 0,
       occasion: "Birthday",
       availableTimes: fetchAPI(today),
     };
@@ -40,7 +40,7 @@ const initializeTimes = () => {
     return {
       date: today,
       time: "",
-      guests: 1,
+      guests: 0,
       occasion: "Birthday",
       availableTimes: [], // Fallback empty array
     };
@@ -81,8 +81,8 @@ export function BookingPage({ addReservation, reservations }) {
 
 
 
-        const newReservation = { 
-          ...formState, 
+        const newReservation = {
+          ...formState,
           date: formState.date.toISOString() // Convert Date object to string for storage
         };
 

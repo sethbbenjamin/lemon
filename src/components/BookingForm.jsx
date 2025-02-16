@@ -1,6 +1,19 @@
 import "./bookingform.css";
 
+
+
+
+
+
 function BookingForm({ formState, dispatch, handleDateChange, availableTimes, handleSubmit }) {
+
+  const isFormValid = (formState) => {
+
+    if (formState.date instanceof Date && formState.time && Number(formState.guests) > 0 && formState.occasion) { return true; }
+    return false;
+  };
+
+
   return (
     <>
       <h1>Book Now</h1>
@@ -9,6 +22,7 @@ function BookingForm({ formState, dispatch, handleDateChange, availableTimes, ha
         <input
           type="date"
           id="res-date"
+          required
           value={formState.date instanceof Date ? formState.date.toISOString().split("T")[0] : ""}
           onChange={(e) => handleDateChange(e.target.value)}
         />
@@ -17,6 +31,7 @@ function BookingForm({ formState, dispatch, handleDateChange, availableTimes, ha
         <select
           id="res-time"
           value={formState.time}
+          required
           onChange={(e) => dispatch({ type: "SET_TIME", payload: e.target.value })}
         >
           <option value="">Select a time</option>
@@ -33,6 +48,7 @@ function BookingForm({ formState, dispatch, handleDateChange, availableTimes, ha
           id="guests"
           min="1"
           max="10"
+          required
           value={formState.guests}
           onChange={(e) => dispatch({ type: "SET_GUESTS", payload: Number(e.target.value) })}
         />
@@ -48,7 +64,7 @@ function BookingForm({ formState, dispatch, handleDateChange, availableTimes, ha
           <option>Party</option>
         </select>
 
-        <input type="submit" value="Make Your Reservation" />
+        <input type="submit" value="Make Your Reservation" disabled={!isFormValid(formState)} />
       </form>
     </>
   );
