@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from "./BookingForm";
+import ConfirmedBooking from "./ConfirmedBooking";
 import { test, expect, vi, beforeEach } from "vitest";
 
 // Mock fetchAPI function
@@ -16,7 +17,7 @@ beforeEach(() => {
   // Initialize mock state before each test
   mockFormState = {
     date: new Date(), // Ensure the date is a Date object
-    time: "",
+    time: "17:00",
     guests: 1,
     occasion: "Birthday",
     availableTimes: ["17:00", "18:00", "19:00"],

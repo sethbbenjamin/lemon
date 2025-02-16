@@ -1,8 +1,10 @@
 
 import Hero from '../components/Hero';
 import Highlights from '../components/Highlights';
+import AboutUs from '../components/AboutUs';
 
 import React from 'react'
+import About from './About';
 
 export const Home = () => {
   return (
@@ -10,9 +12,7 @@ export const Home = () => {
     <>
       <Hero />
       <Highlights />
-      <section id="about-us">
-        About Us Section
-      </section>
+      <AboutUs />
     </>
   )
 }

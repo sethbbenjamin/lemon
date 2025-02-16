@@ -83,7 +83,7 @@ export function BookingPage({ addReservation, reservations }) {
 
         const newReservation = {
           ...formState,
-          date: formState.date.toISOString() // Convert Date object to string for storage
+          date: formState.date.toLocaleDateString() // Convert Date object to string for storage
         };
 
 

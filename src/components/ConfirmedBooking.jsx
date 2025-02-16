@@ -1,3 +1,5 @@
+import "./confirmedbooking.css"
+
 import { useLocation } from "react-router-dom";
 
 function ConfirmedBooking() {
@@ -9,10 +11,12 @@ function ConfirmedBooking() {
 
     return (
         <div>
-            <h2>Reservation Confirmed!</h2>
-            <p>
-                Reservation: <strong>{reservationDate.toLocaleDateString()}</strong> at <strong>{formData.time}</strong> for <strong>{formData.guests}</strong> guests.
-            </p>
+            <h2>Confirmed!</h2>
+            <ul className="confirmed-details">
+                <li>{reservationDate.toLocaleDateString()}</li>
+                <li>{formData.time}</li>
+                <li>{formData.guests} guests</li>
+            </ul>
         </div>
     );
 }
