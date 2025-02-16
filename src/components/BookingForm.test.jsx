@@ -1,27 +1,33 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from "./BookingForm";
-import { test, expect, vi } from "vitest";
+import { test, expect, vi, beforeEach } from "vitest";
 
-test("Renders the BookingForm heading", () => {
-  // Mock the form state
-  const mockFormState = {
-    date: "",
+// Mock fetchAPI function
+vi.mock("../api", () => ({
+  fetchAPI: vi.fn(() => ["17:00", "18:00", "19:00"]), // Mocked available times
+}));
+
+let mockFormState;
+let mockDispatch;
+let mockHandleDateChange;
+let mockHandleSubmit;
+
+beforeEach(() => {
+  // Initialize mock state before each test
+  mockFormState = {
+    date: new Date(), // Ensure the date is a Date object
     time: "",
     guests: 1,
     occasion: "Birthday",
     availableTimes: ["17:00", "18:00", "19:00"],
   };
 
-  // Mock dispatch function
-  const mockDispatch = vi.fn();
+  mockDispatch = vi.fn();
+  mockHandleDateChange = vi.fn();
+  mockHandleSubmit = vi.fn((e) => e.preventDefault());
+});
 
-  // Mock handleDateChange function
-  const mockHandleDateChange = vi.fn();
-
-  // Mock form submission handler
-  const mockHandleSubmit = vi.fn((e) => e.preventDefault());
-
-  // Render the component with mock props
+test("Renders the BookingForm heading", () => {
   render(
     <BookingForm
       formState={mockFormState}
@@ -32,22 +38,43 @@ test("Renders the BookingForm heading", () => {
     />
   );
 
-  // Check if the heading is rendered
+  // Verify heading exists
   const headingElement = screen.getByText("Book Now");
   expect(headingElement).toBeInTheDocument();
+});
 
-  // Check if the submit button exists
-  const submitButton = screen.getByRole("button", { name: /Make Your Reservation/i });
-  expect(submitButton).toBeInTheDocument();
-  
-  // Simulate entering a date
+test("Handles date selection and updates state", () => {
+  render(
+    <BookingForm
+      formState={mockFormState}
+      dispatch={mockDispatch}
+      handleDateChange={mockHandleDateChange}
+      availableTimes={mockFormState.availableTimes}
+      handleSubmit={mockHandleSubmit}
+    />
+  );
+
+  // Select a new date
   const dateInput = screen.getByLabelText(/Choose date/i);
   fireEvent.change(dateInput, { target: { value: "2025-02-20" } });
 
-  // Ensure the handleDateChange function was called
+  // Ensure handleDateChange function is called with correct date format
   expect(mockHandleDateChange).toHaveBeenCalledWith("2025-02-20");
+});
 
-  // Simulate clicking the submit button
+test("Handles form submission", () => {
+  render(
+    <BookingForm
+      formState={mockFormState}
+      dispatch={mockDispatch}
+      handleDateChange={mockHandleDateChange}
+      availableTimes={mockFormState.availableTimes}
+      handleSubmit={mockHandleSubmit}
+    />
+  );
+
+  // Click submit button
+  const submitButton = screen.getByRole("button", { name: /Make Your Reservation/i });
   fireEvent.click(submitButton);
 
   // Ensure the handleSubmit function was called

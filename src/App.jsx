@@ -23,6 +23,15 @@ function App() {
     localStorage.setItem("reservations", JSON.stringify(reservations));
   }, [reservations]);
 
+
+  //DEBUG: Clear reservations on startup
+  useEffect(() => {
+    localStorage.removeItem("reservations"); // Remove stored reservations on startup
+  }, []);
+
+
+
+
   const addReservation = (newReservation) => {
     setReservations((prev) => [...prev, newReservation]);
   };
