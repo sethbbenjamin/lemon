@@ -9,16 +9,16 @@ import { Home, About, Menu, BookingPage, Order, Login } from './pages';
 import ConfirmedBooking from './components/ConfirmedBooking';
 
 function App() {
-  // Load reservations from localStorage or default to an empty array
+  // Load reservations from localStorage
   const [reservations, setReservations] = useState(() => {
     const storedReservations = localStorage.getItem("reservations");
     return storedReservations ? JSON.parse(storedReservations).map(res => ({
       ...res,
-      date: new Date(res.date) // Convert back to Date object
+      date: new Date(res.date) 
     })) : [];
   });
 
-  // Save reservations to localStorage whenever they change
+  // Save reservations to localStorage 
   useEffect(() => {
     localStorage.setItem("reservations", JSON.stringify(reservations));
   }, [reservations]);

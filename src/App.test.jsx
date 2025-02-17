@@ -9,7 +9,7 @@ beforeEach(() => {
 });
 
 test("App writes reservations to localStorage on startup", async () => {
-    // Preload localStorage with a reservation
+    // load localStorage with a reservation
     const preloadedReservations = [
         { date: "2025-02-20", time: "18:00", guests: 2, occasion: "Birthday" },
     ];
@@ -17,7 +17,6 @@ test("App writes reservations to localStorage on startup", async () => {
 
     const setItemSpy = vi.spyOn(Storage.prototype, "setItem");
 
-    // Render the App wrapped in MemoryRouter for routing context.
     await act(async () => {
         render(
             <MemoryRouter>

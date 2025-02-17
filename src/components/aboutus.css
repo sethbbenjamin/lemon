@@ -1,9 +1,14 @@
 #about-us{
     padding: 20px;
-    display:flex;
-}
+ }
 
 .portrait {
-    max-width: 150px;
+    max-width: 250px;
     margin: 10px;
+  }
+
+
+  #about-us article{
+    display:flex;
+
   }

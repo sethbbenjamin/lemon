@@ -1,10 +1,5 @@
 import "./bookingform.css";
 
-
-
-
-
-
 function BookingForm({ formState, dispatch, handleDateChange, availableTimes, handleSubmit }) {
 
   const isFormValid = (formState) => {

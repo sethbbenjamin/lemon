@@ -8,7 +8,7 @@ function Navbar() {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
         <li><NavLink to="/menu">Menu</NavLink></li>
-        <li><NavLink to="/bookingpage">Reservation</NavLink></li>
+        <li><NavLink to="/bookingpage">Book Table</NavLink></li>
         <li><NavLink to="/order">Order Online</NavLink></li>
         <li><NavLink to="/login">Login</NavLink></li>
       </ul>

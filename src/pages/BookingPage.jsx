@@ -2,7 +2,7 @@ import { useReducer } from "react";
 import BookingForm from "../components/BookingForm";
 import { useNavigate } from "react-router-dom";
 
-// Reducer function to manage form state
+// Reducer function
 const formReducer = (state, action) => {
   switch (action.type) {
     case "SET_DATE":
@@ -54,7 +54,7 @@ const updateTimes = (date) => {
     return fetchAPI(dateObj);
   } else {
     console.error("fetchAPI function is not available.");
-    return []; // Return an empty array as fallback
+    return []; 
   }
 };
 
@@ -107,7 +107,7 @@ export function BookingPage({ addReservation, reservations }) {
       <BookingForm
         formState={formState}
         dispatch={dispatch}
-        handleDateChange={handleDateChange} // Pass new date handler
+        handleDateChange={handleDateChange} 
         availableTimes={formState.availableTimes}
         handleSubmit={handleSubmit}
       />
