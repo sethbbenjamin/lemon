@@ -1,5 +1,5 @@
 
-
+import "./aboutus.css"
 
 import React from 'react'
 
@@ -7,6 +7,9 @@ const AboutUs = () => {
     return (
         <section id="about-us">
             <h2>About Us</h2>
+
+            <img src="/images/chef.jpg" alt="Chef" className="portrait" />
+
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam et
                 tincidunt nunc. Sed nec ultricies nisl. Donec nec nunc eget nunc

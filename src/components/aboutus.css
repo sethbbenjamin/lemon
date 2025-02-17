@@ -1,0 +1,9 @@
+#about-us{
+    padding: 20px;
+    display:flex;
+}
+
+.portrait {
+    max-width: 150px;
+    margin: 10px;
+  }
